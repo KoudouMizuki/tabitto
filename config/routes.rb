@@ -8,9 +8,14 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  devise_scope :users do
+      post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end 
+  
   scope module: :public do
     root to: "homes#top"
     get 'homes/about' => 'homes#about', as: 'about'
   end  
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
