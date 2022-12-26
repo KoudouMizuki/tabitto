@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-md-2">
+      <%= form_with model: @post, url: posts_path do |f| %>
+        <div class="form-group">
+          <div class="col-form-label">タイトル</div>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="form-group">
+          <div class="col-form-label">投稿について</div>
+          <%= f.text_area :introduction %>
+        </div>
+
+        <div class="form-group">
+          <div class="col-form-label">タグ</div>
+          <%= f.text_area :tag %>
+        </div>
+        <div class="form-group">
+          <div class="col-form-label">駐車場</div>
+          <%= f.radio_button :parking, "yes" %>
+          <%= f.label :parking_yes, "あり" %>
+          <%= f.radio_button :parking, "no" %>
+          <%= f.label :parking_no, "なし" %>
+          <%= f.radio_button :parking, Post.parkings.key(2) %>
+          <%= f.label :parking, Post.parkings_i18n[:others] %>
+        </div>
+        
+        
+      <%end%>
+    </div>
+  </div>
+</div>

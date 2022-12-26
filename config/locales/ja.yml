@@ -1,0 +1,9 @@
+
+    
+ ja:
+    enums:
+      post:
+        parking:
+          yes: "あり"
+          no: "なし"
+          others: "その他"
