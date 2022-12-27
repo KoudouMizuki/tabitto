@@ -3,7 +3,7 @@
     <div class="col-4 offset-md-2">
       <%= form_with model: @post, url: posts_path do |f| %>
         <div class="form-group">
-          <div class="col-form-label">●画像</div>
+          <div class="col-form-label">●写真</div>
           <%= f.file_field "image/*" %>
         </div>
         <div class="form-group">
@@ -27,11 +27,11 @@
           <%= f.radio_button :parking_number, 2 %>
           <%= f.label :parking_number_2, "なし" %>
           <%= f.radio_button :parking_number, 3 %>
-          <%= f.label :parking_number_3, "その他" %>
+          <%= f.label :parking_nomber_3, "その他" %>
           <div class="col-form-label">その他を選択した場合</div>
           <%= f.text_field :parking %>
         </div>
-        
+
         <div class="form-group">
           <div class="col-form-label">●季節</div>
           <%= f.radio_button :season, Post.seasons.key(0) %>
@@ -43,7 +43,7 @@
           <%= f.radio_button :season, Post.seasons.key(3) %>
           <%= f.label :season_winter, Post.seasons_i18n[:winter] %>
         </div>
-        
+
         <div class="form-group">
           <div class="col-form-label">●交通手段</div>
           <%= f.radio_button :transportation, Post.transportations.key(0) %>
@@ -54,10 +54,6 @@
           <%= f.label :transportation_bicycle, Post.transportations_i18n[:bicycle] %>
           <%= f.radio_button :transportation, Post.transportations.key(3) %>
           <%= f.label :transportation_walking, Post.transportations_i18n[:walking] %>
-        </div>
-        
-        <div calss="form-group">
-          <%= f.submit "投稿" %>
         </div>
       <%end%>
     </div>

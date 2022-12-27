@@ -1,4 +1,3 @@
-
   ja:
     enums:
       post:
@@ -11,6 +10,5 @@
           car: "車"
           bike: "バイク"
           bicycle: "自転車"
-          walking: "徒歩"  
+          walking: "徒歩"
 
- 
