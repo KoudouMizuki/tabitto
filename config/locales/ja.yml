@@ -1,9 +1,16 @@
 
-    
- ja:
+  ja:
     enums:
       post:
-        parking:
-          yes: "あり"
-          no: "なし"
-          others: "その他"
+        season:
+          spring: "春"
+          summer: "夏"
+          autumm: "秋"
+          winter: "冬"
+        transportation:
+          car: "車"
+          bike: "バイク"
+          bicycle: "自転車"
+          walking: "徒歩"  
+
+ 
