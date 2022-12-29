@@ -1,4 +1,7 @@
 class Public::UsersController < ApplicationController
+  
+  before_action :ensure_normal_user, only: %i[update destroy]
+  
   def show
     @user = User.find(params[:id])
   end
@@ -11,7 +14,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
-  end 
+  end
+  
+  def ensure_normal_user
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除できません。'
+    end
+  end  
   
   private
   
