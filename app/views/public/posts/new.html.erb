@@ -57,76 +57,59 @@
         </div>
       <%end%>
     </div>
-    
-    <idv class="col-8">
+
+    <idv class="col-8 ">
       <input id="address" type="textbox" value="GeekSalon">
-<input type="button" value="検索" onclick="codeAddress()">
-<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
-<div id='map'></div>
+      <input type="button" value="Encode" onclick="codeAddress()">
 
-<style>
-#map {
-  height: 600px;
-  width: 600px;
-}
-</style>
+      <div id="display"></div>
+      <div id='map'></div>
 
-<script>
-//初期マップの設定
-let map
-let marker
-function initMap(){
-  geocoder = new google.maps.Geocoder()
+      <style>
+        #map {
+          height: 600px;
+          width: 100%;
+        }
+      </style>
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: 35.6803997, lng:139.7690174},  //東京
-    zoom: 15,
-    
-  });
-}
+      <script>
+        let map
+        let geocoder
+        const display = document.getElementById('display')
 
-//検索後のマップ作成
-let geocoder
-let aft
-function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-        //マーカーが複数できないようにする
-        if (aft == true){
-            marker.setMap(null);
+        function initMap(){
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 40.7828, lng:-73.9653},
+            zoom: 12,
+          });
+
+          marker = new google.maps.Marker({
+            position:  {lat: 40.7828, lng:-73.9653},
+            map: map
+          });
         }
 
-        //新しくマーカーを作成する
-        map.setCenter(results[0].geometry.location);
-            marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            draggable: true	// ドラッグ可能にする
-        });
+        function codeAddress(){
+          let inputAddress = document.getElementById('address').value;
 
-        //二度目以降か判断
-        aft = true
-
-        //検索した時に緯度経度を入力する
-        document.getElementById('lat').value = results[0].geometry.location.lat();
-        document.getElementById('lng').value = results[0].geometry.location.lng();
-
-        // マーカーのドロップ（ドラッグ終了）時のイベント
-        google.maps.event.addListener( marker, 'dragend', function(ev){
-            // イベントの引数evの、プロパティ.latLngが緯度経度
-            document.getElementById('lat').value = ev.latLng.lat();
-            document.getElementById('lng').value = ev.latLng.lng();
-        });
-    } else {
-      alert('該当する結果がありませんでした：' + status);
-    }
-  });   
-}
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?AIzaSyDAFTm4C7rY9xYaVyt4MAi7Rs05F6BO38M&callback=initMap" async defer></script>
+          geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+          if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
+            display.textContent = "検索結果：" + results[ 0 ].geometry.location
+          } else {
+              alert('該当する結果がありませんでした：' + status);
+            }
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFTm4C7rY9xYaVyt4MAi7Rs05F6BO38M&callback=initMap" async defer></script>
     </idv>
-  </div>  
+  </div>
 </div>
 
