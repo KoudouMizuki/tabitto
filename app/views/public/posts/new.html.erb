@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-4">
+    <div class="col-4 mt-3">
       <%= form_with model: @post, url: posts_path do |f| %>
+        <div class="form-group row">
+          <input id="address" type="textbox">
+          <input type="button" value="検索" onclick="codeAddress()">
+          <div id="display"></div>
+        </div>
+
         <div class="form-group">
           <div class="col-form-label">●写真</div>
           <%= f.file_field "image/*" %>
@@ -55,14 +61,14 @@
           <%= f.radio_button :transportation, Post.transportations.key(3) %>
           <%= f.label :transportation_walking, Post.transportations_i18n[:walking] %>
         </div>
+
+        <div class="form-group row">
+          <%= f.submit "シェア", class: "btn btn-primary btn-sm col-3" %>
+        </div>
       <%end%>
     </div>
 
-    <idv class="col-8 ">
-      <input id="address" type="textbox" value="GeekSalon">
-      <input type="button" value="Encode" onclick="codeAddress()">
-
-      <div id="display"></div>
+    <idv class="col-8 mt-3">
       <div id='map'></div>
 
       <style>

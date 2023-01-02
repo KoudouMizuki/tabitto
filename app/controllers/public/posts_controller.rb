@@ -5,6 +5,9 @@ class Public::PostsController < ApplicationController
   end
   
   def create
+    @post = Post.new(post_params)
+    @post.save
+    redirect_to post_path(@post.id)
   end  
 
   def show
@@ -17,5 +20,11 @@ class Public::PostsController < ApplicationController
   end  
   
   def destroy
+  end
+  
+  private
+  
+  def post_params
+    params.require(:post).permit(:image, :name, :introduction, :tag, :parking, :season, :transportation)
   end  
 end
