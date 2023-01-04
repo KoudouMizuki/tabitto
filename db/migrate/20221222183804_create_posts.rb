@@ -9,7 +9,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :parking, null: false
       t.integer :season, null: false
       t.integer :transportation, null: false
-      t.string :address, null: false
       t.float :latitude, null: false
       t.float :longitude, null: false
       t.timestamps

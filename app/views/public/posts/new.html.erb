@@ -1,11 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 mt-3">
+    <div class="order-1 order-md-0 col-md-4 mt-3">
       <%= form_with model: @post, url: posts_path do |f| %>
         <div class="form-group row">
           <input id="address" type="textbox">
           <input type="button" value="検索" onclick="codeAddress()">
           <div id="display"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :latitude, '選択された緯度' %>
+            <%= f.text_field :latitude, class: 'form-control', readonly: true %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :longitude, '選択された経度' %>
+            <%= f.text_field :longitude, class: 'form-control', readonly: true %>
+          </div>
         </div>
 
         <div class="form-group">
@@ -14,17 +25,17 @@
         </div>
         <div class="form-group">
           <div class="col-form-label">●タイトル</div>
-          <%= f.text_field :name %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <div class="col-form-label">●投稿について</div>
-          <%= f.text_area :introduction %>
+          <div class="col-form-label">●投稿についての説明</div>
+          <%= f.text_area :introduction, class: "form-control" %>
         </div>
 
         <div class="form-group">
           <div class="col-form-label">●タグ</div>
-          <%= f.text_area :tag %>
+          <%= f.text_area :tag, class: "form-control" %>
         </div>
         <div class="form-group">
           <div class="col-form-label">●駐車場</div>
@@ -35,7 +46,7 @@
           <%= f.radio_button :parking_number, 3 %>
           <%= f.label :parking_nomber_3, "その他" %>
           <div class="col-form-label">その他を選択した場合</div>
-          <%= f.text_field :parking %>
+          <%= f.text_field :parking, class: "form-control" %>
         </div>
 
         <div class="form-group">
@@ -63,17 +74,17 @@
         </div>
 
         <div class="form-group row">
-          <%= f.submit "シェア", class: "btn btn-primary btn-sm col-3" %>
+          <%= f.submit "シェア", class: "btn btn-primary btn-sm col-3 " %>
         </div>
       <%end%>
     </div>
 
-    <idv class="col-8 mt-3">
-      <div id='map'></div>
+    <idv class="order-0 order-md-1 col-md-8 mt-3">
+      <div id="map"></div>
 
       <style>
         #map {
-          height: 600px;
+          height: 800px;
           width: 100%;
         }
       </style>
@@ -87,14 +98,27 @@
           geocoder = new google.maps.Geocoder()
 
           map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 40.7828, lng:-73.9653},
+            center: {lat: 35.68944, lng:139.69167},
             zoom: 12,
           });
 
           marker = new google.maps.Marker({
-            position:  {lat: 40.7828, lng:-73.9653},
+            position: {lat: 35.68944, lng:139.69167},
             map: map
           });
+
+          google.maps.event.addListener(map, 'click', clickEvent);
+        }
+
+        function clickEvent(event) {
+          marker.setMap(null);
+          marker = new google.maps.Marker({
+            position: event.latLng,
+            map: map
+          });
+
+          $('#post_latitude').val(event.latLng.lat());
+          $('#post_longitude').val(event.latLng.lng());
         }
 
         function codeAddress(){
@@ -103,11 +127,6 @@
           geocoder.geocode( { 'address': inputAddress}, function(results, status) {
           if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-            });
-            display.textContent = "検索結果：" + results[ 0 ].geometry.location
           } else {
               alert('該当する結果がありませんでした：' + status);
             }

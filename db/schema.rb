@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2022_12_24_185143) do
     t.integer "parking", null: false
     t.integer "season", null: false
     t.integer "transportation", null: false
-    t.string "address", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
     t.datetime "created_at", precision: 6, null: false
