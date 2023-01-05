@@ -35,18 +35,14 @@
 
         <div class="form-group">
           <div class="col-form-label">●タグ</div>
-          <%= f.text_area :tag, class: "form-control" %>
+          <%= f.text_area :name, value: @tag_list, class: "form-control" %>
         </div>
         <div class="form-group">
           <div class="col-form-label">●駐車場</div>
-          <%= f.radio_button :parking_number, 1 %>
-          <%= f.label :parking_number_1, "あり" %>
-          <%= f.radio_button :parking_number, 2 %>
-          <%= f.label :parking_number_2, "なし" %>
-          <%= f.radio_button :parking_number, 3 %>
-          <%= f.label :parking_nomber_3, "その他" %>
-          <div class="col-form-label">その他を選択した場合</div>
-          <%= f.text_field :parking, class: "form-control" %>
+          <%= f.radio_button :parking, Post.parkings.key(0) %>
+          <%= f.label :parking_yes_parking, Post.parkings_i18n[:yes_parking] %>
+          <%= f.radio_button :parking, Post.parkings.key(1) %>
+          <%= f.label :parking_not_parking, Post.parkings_i18n[:not_parking] %>
         </div>
 
         <div class="form-group">

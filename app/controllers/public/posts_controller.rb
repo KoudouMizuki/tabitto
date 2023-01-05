@@ -7,8 +7,12 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post.id)
+    @tag_list = Tag.all
+    @tag_list = params[:post][:name].split(',')
+    if @post.save
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post.id)
+    end
   end
 
   def show

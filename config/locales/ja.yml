@@ -1,6 +1,9 @@
   ja:
     enums:
       post:
+        parking:
+          yes_parking: "あり"
+          not_parking: "なし"
         season:
           spring: "春"
           summer: "夏"
