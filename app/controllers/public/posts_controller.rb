@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      @post.save_tags(prams[:post][:tag])
+      @post.save_tags(params[:post][:tag])
       redirect_to post_path(@post.id)
     else
       render :new
@@ -16,6 +16,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -30,6 +31,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :name, :introduction, :tag, :parking, :season, :transportation, :latitude, :longitude)
+    params.require(:post).permit(:image, :name, :introduction, :parking, :season, :transportation, :latitude, :longitude)
   end
 end

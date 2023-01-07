@@ -1,15 +1,16 @@
-enums:
-  post:
-    parking:
-      yes_parking: "あり"
-      not_parking: "なし"
-    season:
-      spring: "春"
-      summer: "夏"
-      autumm: "秋"
-      winter: "冬"
-    transportatio:
-      car: "車"
-      bike: "バイク"
-      bicycle: "自転車"
-      walking: "徒歩"
+ja:
+  enums:
+    post:
+      parking:
+        yes_parking: "あり"
+        not_parking: "なし"
+      season:
+        spring: "春"
+        summer: "夏"
+        autumm: "秋"
+        winter: "冬"
+      transportation:
+        car: "車"
+        bike: "バイク"
+        bicycle: "自転車"
+        walking: "徒歩"
