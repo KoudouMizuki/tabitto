@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_one_attached :user_image
-  
+  has_many :posts, dependent: :destroy
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')

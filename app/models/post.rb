@@ -3,9 +3,11 @@ class Post < ApplicationRecord
   enum parking: { yes_parking:0, not_parking:1}
   enum season: { spring:0, summer:1, autumm:2, winter:3}
   enum transportation: {car:0, bike:1, bicycle:2, walking:3}
-
+  
+  has_one_attached :post_image
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
+  belongs_to :user
 
   def save_tags(tags)
     tag_list = tags.split(/[[:blank]] +/)
@@ -22,7 +24,7 @@ class Post < ApplicationRecord
       self.tags << new_post_tag
     end
   end
-  
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/asets/images/no-image.jpg')
@@ -30,5 +32,5 @@ class Post < ApplicationRecord
     end
     image
   end
-  
+
 end

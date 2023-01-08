@@ -1,15 +1,17 @@
 <div calss="container">
   <div class= "row">
     <div class="col-12 offset-md-2">
-      <%= image_tag @post.image %>
-      <%= @post.tag.name %>
+      <% @post.tags.each do |tag| %>
+        <%= tag.name %>
+      <%end%>
+      <%= image_tag @post.post_image %>
       <strong><h4><%= @post.name %></h4></strong>
       <%= @post.introduction %>
       季節：<%= @post.season %>
       駐車場：<%= @post.parking %>
       交通手段：<%= @post.transportation %>
       <span class="border-bottom"></span>
-      
+
     </div>
   </div>
 </div>
