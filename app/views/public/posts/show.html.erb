@@ -1,10 +1,25 @@
 <div calss="container">
   <div class= "row">
     <div class="col-12 offset-md-2">
-      <%= image_tag @post.post_image.variant(resize: '800x600') %>
+      <%= image_tag @post.post_image.variant(resize: '800x600') %><br/>
+
       <% @post.tags.each do |tag| %>
         <%= tag.name %>
       <%end%>
+      <% if @post.favorite?(current_user) %>
+        <p>
+          <%= link_to post_favorites_path(@post.id), method: :delete do %>
+            <span style= "color:yellow">★</span>お気に入りを解除
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to post_favorites_path(@post.id), method: :post do %>
+            <span>☆</span>お気に入りに登録
+          <% end %>
+        </p>
+      <% end %>
+
       <strong><h2><%= @post.name %></h2></strong>
       <%= @post.introduction %><br/>
       【季節】<%= @post.season_i18n %><br/>
