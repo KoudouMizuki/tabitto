@@ -30,4 +30,35 @@
 
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 offset-md-2">
+      <%= form_for [@post, @comment] do |f| %>
+        <%= f.text_area :comment, size: "40x5" %>
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      <%end%>
+      
+      <strong><h4>コメント一覧</h4></strong>
+     <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= image_tag comment.user.user_image.variant(resize: '35x35'), class: "rounded-circle " %></td>
+              <td><strong><%= comment.user.account_name %></strong></td>
+              <td>
+                <%= comment.comment %>
+                <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
+              </td>
+            </tr>
+          <%end%>  
+        </tbody>
+     </table>
+    </div>
+  </div>
 </div>
