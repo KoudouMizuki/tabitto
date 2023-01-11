@@ -10,6 +10,7 @@
       <h4><%= @user.account_name %></h4>
       <%= @user.user_name %>
       <%= link_to "プロフィールを編集", edit_user_path(@user.id), class: "btn btn-success col-4 btn-sm" %>
+      <%= link_to "お気に入り一覧", favorites_path(current_user.id), class: "btn btn-primary" %>
     </div>
   </div>
 

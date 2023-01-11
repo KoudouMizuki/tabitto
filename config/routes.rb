@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :posts do
       resource :favorites, only: [:create, :destroy]
-    end  
+    end
+    resources :favorites, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

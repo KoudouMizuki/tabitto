@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <% @favorites.each do |favorite| %>
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag favorite.post.post_image.variant(resize: "400x400") %>
+        <%end%>
+      <% end %>
+    </div>
+    <div class="col-12">
+      <% if @favorites.empty? %>
+        <h2>お気に入りはありません</h2>
+      <% end %>
+    </div>
+  </div>
+</div>
