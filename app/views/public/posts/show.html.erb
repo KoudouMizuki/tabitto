@@ -32,13 +32,8 @@
   </div>
   <div class="row">
     <div class="col-12 offset-md-2">
-      <%= form_for [@post, @comment] do |f| %>
-        <%= f.text_area :comment, size: "40x5" %>
-        <%= f.submit "送信", class: "btn btn-primary" %>
-      <%end%>
-      
       <strong><h4>コメント一覧</h4></strong>
-     <table>
+      <table>
         <thead>
           <tr>
             <th></th>
@@ -58,7 +53,12 @@
             </tr>
           <%end%>  
         </tbody>
-     </table>
+      </table>
+      
+      <%= form_for [@post, @comment] do |f| %>
+        <%= f.text_area :comment, size: "40x5" %>
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      <%end%>
     </div>
   </div>
 </div>

@@ -1,16 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <% @favorites.each do |favorite| %>
-        <%= link_to post_path(post.id) do %>
-          <%= image_tag favorite.post.post_image.variant(resize: "400x400") %>
-        <%end%>
-      <% end %>
-    </div>
     <div class="col-12">
       <% if @favorites.empty? %>
         <h2>お気に入りはありません</h2>
+      <%else%>
+        <strong><h4>お気に入り一覧</h4></strong>
       <% end %>
     </div>
+  </div>
+
+  <div class="row">
+    <% @favorites.each do |favorite| %>
+      <div class="col-3">
+        <%= link_to post_path(favorite.post.id) do %>
+          <%= image_tag favorite.post.post_image.variant(resize: '400x400^', gravity: "center", crop: "300x300+0+0") %>
+        <%end%>
+      </div>
+    <%end%>
   </div>
 </div>
