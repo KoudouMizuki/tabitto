@@ -1,6 +1,13 @@
-<div calss="container">
-  <div class= "row">
+<div class="container">
+  <div class="row">
     <div class="col-12 offset-md-2">
+      <% if @post.user == current_user %>
+        <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-success btn-sm mt-3 mb-1" %>
+        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger btn-sm mt-3 mb-1" %>
+      <%end%>
+    </div>
+    <div class="col-12 offset-md-2">
+
       <%= image_tag @post.post_image.variant(resize: '800x600') %><br/>
 
       <% @post.tags.each do |tag| %>
@@ -21,7 +28,7 @@
       <% end %>
 
       <strong><h2><%= @post.name %></h2></strong>
-      <%= @post.introduction %><br/>
+      【説明】<%= @post.introduction %><br/>
       【季節】<%= @post.season_i18n %><br/>
       【駐車場】<%= @post.parking_i18n %><br/>
       【交通手段】<%= @post.transportation_i18n %><br/>
@@ -44,17 +51,17 @@
         <tbody>
           <% @comments.each do |comment| %>
             <tr>
-              <td><%= image_tag comment.user.user_image.variant(resize: '35x35'), class: "rounded-circle " %></td>
-              <td><strong><%= comment.user.account_name %></strong></td>
+              <td><%= image_tag comment.user.user_image.variant(resize: '35x35'), class: "rounded-circle mb-3 " %></td>
               <td>
-                <%= comment.comment %>
-                <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
+                <strong><%= comment.user.account_name %></strong><br>
+                 <%= comment.comment %>
+                 <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
               </td>
             </tr>
-          <%end%>  
+          <%end%>
         </tbody>
       </table>
-      
+
       <%= form_for [@post, @comment] do |f| %>
         <%= f.text_area :comment, size: "40x5" %>
         <%= f.submit "送信", class: "btn btn-primary" %>

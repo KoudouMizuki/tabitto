@@ -1,2 +1,55 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 offset-md-2">
+      <%= image_tag @post.post_image.variant(resize: '800x600'), class: "mb-3 mt-3" %><br/>
+
+      <%= form_with model: @post, url: post_path(@post.id) do |f| %>
+        <div class="form-group row">
+          <div class="col-md-1 col-form-label">●タイトル</div>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-1 col-form-label">●説明</div>
+          <%= f.text_area :introduction, class: "col-5" %>
+        </div>
+
+        <div class="form-group">
+          <div class="col-form-label">●季節</div>
+          <%= f.radio_button :season, Post.seasons.key(0) %>
+          <%= f.label :season_spring, Post.seasons_i18n[:spring] %>
+          <%= f.radio_button :season, Post.seasons.key(1) %>
+          <%= f.label :season_summer, Post.seasons_i18n[:summer] %>
+          <%= f.radio_button :season, Post.seasons.key(2) %>
+          <%= f.label :season_autumm, Post.seasons_i18n[:autumm] %>
+          <%= f.radio_button :season, Post.seasons.key(3) %>
+          <%= f.label :season_winter, Post.seasons_i18n[:winter] %>
+        </div>
+
+        <div class="form-group">
+          <div class="cl-form-label">●駐車場</div>
+          <%= f.radio_button :parking, Post.parkings.key(0) %>
+          <%= f.label :parking_yes_parking, Post.parkings_i18n[:yes_parking] %>
+          <%= f.radio_button :parking, Post.parkings.key(1) %>
+          <%= f.label :parking_not_parking, Post.parkings_i18n[:not_parking] %>
+        </div>
+
+        <div class="form-group">
+          <div class="col-form-label">●交通手段</div>
+          <%= f.radio_button :transportation, Post.transportations.key(0) %>
+          <%= f.label :transportation_car, Post.transportations_i18n[:car] %>
+          <%= f.radio_button :transportation, Post.transportations.key(1) %>
+          <%= f.label :transportation_bike, Post.transportations_i18n[:bike] %>
+          <%= f.radio_button :transportation, Post.transportations.key(2) %>
+          <%= f.label :transportation_bicycle, Post.transportations_i18n[:bicycle] %>
+          <%= f.radio_button :transportation, Post.transportations.key(3) %>
+          <%= f.label :transportation_walking, Post.transportations_i18n[:walking] %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "編集を保存" %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
