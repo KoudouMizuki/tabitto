@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 mt-3 text-center">
       <% if @favorites.empty? %>
         <h2>お気に入りはありません</h2>
       <%else%>
@@ -8,6 +8,8 @@
       <% end %>
     </div>
   </div>
+  
+  <p class="br2">
 
   <div class="row">
     <% @favorites.each do |favorite| %>
@@ -19,3 +21,10 @@
     <%end%>
   </div>
 </div>
+
+
+<style>
+  .br2 {
+  border-bottom: 3px solid #999999;
+}
+</style>

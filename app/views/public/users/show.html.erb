@@ -1,18 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-12 offset-md-2">
-      <% if @user.user_image.attached? %>
-        <%= image_tag @user.user_image.variant(resize: '150x150^', gravity: "center", crop: "200x200+0+0"), class: "rounded-circle " %>
-      <%else%>
-        <%= image_tag "no_image.jpeg", size: "150x150", class: "rounded-circle" %>
-      <%end%>
+    <div class="col-lg-12 offset-md-2 mt-3">
+      <table>
+        <tr>
+          <th>
+            <% if @user.user_image.attached? %>
+              <%= image_tag @user.user_image.variant(resize: '150x150^', gravity: "center", crop: "110x110+0+0"), class: "rounded-circle mr-3 " %>
+            <%else%>
+              <%= image_tag "no_image.jpeg", size: "150x150", class: "rounded-circle" %>
+            <%end%>
+          </th>
+          <td>
+            <strong><h3>アカウント名：<%= @user.account_name %></h3></strong>
+            <p class="br2">
+            <strong><h4>ユーザー名：<%= @user.user_name %></h4></strong>
+            <% if @user == current_user %>
+              <%= link_to "お気に入り一覧", favorites_path(current_user.id), class: "btn btn-primary btn-sm" %>
+            <%end%>
+          </td>
+        </tr>
+      </table>
 
-      <h4><%= @user.account_name %></h4>
-      <%= @user.user_name %>
-      <%= link_to "プロフィールを編集", edit_user_path(@user.id), class: "btn btn-success col-4 btn-sm" %>
-      <%= link_to "お気に入り一覧", favorites_path(current_user.id), class: "btn btn-primary btn-sm" %>
+      <% if @user == current_user %>
+        <%= link_to "プロフィールを編集", edit_user_path(@user.id), class: "btn btn-secondary col-6 btn-sm mt-5 mb-3" %>
+      <%end%>
     </div>
   </div>
+
+  <p class="br2">
 
   <div class="row">
     <% @posts.each do |post| %>
@@ -24,3 +39,10 @@
     <%end%>
   </div>
 </div>
+
+
+<style>
+  .br2 {
+  border-bottom: 3px solid #999999;
+}
+</style>

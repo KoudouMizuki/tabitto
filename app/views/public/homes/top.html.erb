@@ -15,22 +15,22 @@
           width: 100%;
         }
       </style>
-      
+
       <script>
         let map
         let geocoder
         const display = document.getElementById('display')
-        
+
         function initMap(){
           geocoder = new google.maps.Geocoder()
-          
+
           map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 40.7828, lng:-73.9653},
+            center: {lat: 35.68944, lng:139.69167},
             zoom: 12,
           });
 
           marker = new google.maps.Marker({
-            position:  {lat: 40.7828, lng:-73.9653},
+            position:  {lat: 35.68944, lng:139.69167},
             map: map
           });
         }
@@ -49,7 +49,7 @@
             } else {
               alert('該当する結果がありませんでした：' + status);
             }
-          });   
+          });
         }
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFTm4C7rY9xYaVyt4MAi7Rs05F6BO38M&callback=initMap" async defer></script>
@@ -59,9 +59,9 @@
     <div class="col-12 mt-4">
       <h4><strong>最近追加されたスポット</strong></h4>
     </div>
-    
+
     <div class="col-3">
-      
+
     </div>
   </div>
 </div>
