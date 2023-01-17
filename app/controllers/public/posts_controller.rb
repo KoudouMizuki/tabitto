@@ -28,8 +28,12 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(update_params)
-    redirect_to post_path(@post.id)
+    if @post.update(update_params)
+      @post.save_tags(params[:post][:tag])
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end  
   end
 
   def destroy
