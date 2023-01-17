@@ -55,13 +55,20 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFTm4C7rY9xYaVyt4MAi7Rs05F6BO38M&callback=initMap" async defer></script>
     </div>
   </div>
+
   <div class="row">
     <div class="col-12 mt-4">
       <h4><strong>最近追加されたスポット</strong></h4>
     </div>
+  </div>
 
-    <div class="col-3">
-
-    </div>
+  <div class="row">
+    <% @posts.each do |post| %>
+        <div class="col-3">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.post_image.variant(resize: '300x300^', gravity: "center", crop: "200x200+0+0") %>
+          <%end%>
+        </div>
+      <%end%>
   </div>
 </div>
