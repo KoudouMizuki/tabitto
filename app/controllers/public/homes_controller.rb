@@ -1,6 +1,11 @@
 class Public::HomesController < ApplicationController
   def top
-    @posts = Post.order(id: :DESC).limit(8)
+    @posts = if params[:name]
+      Post.where(name: params[:name])
+    else
+      Post.all
+    end
+    @posts = @posts.order(id: :DESC).limit(8)
   end
 
   def about
@@ -13,4 +18,5 @@ class Public::HomesController < ApplicationController
     sign_in user
     redirect_to root_path
   end
+
 end

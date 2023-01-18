@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mt-3">
-      <div class="col-12 mb-2">
-        <input id="address" type="textbox">
-      <input type="button" value="検索" onclick="codeAddress()">
+      <div class="mb-2">
+        <%= form_with url: root_path, method: :get, local: true do |f| %>
+          <%= f.text_field :name, placeholder: "キーワードを入力してください。", class: "form-control" %>
+          <%= f.submit "検索" %>
+        <% end %>
       </div>
 
       <div id="display"></div>
@@ -25,14 +27,39 @@
           geocoder = new google.maps.Geocoder()
 
           map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 35.68944, lng:139.69167},
+            center: {lat: <%= (@posts.first || Post.take).latitude %>, lng: <%= (@posts.first || Post.take).longitude %> },
             zoom: 12,
           });
 
-          marker = new google.maps.Marker({
-            position:  {lat: 35.68944, lng:139.69167},
-            map: map
-          });
+          let marker = [];
+          let infoWindow = [];
+
+　　　　　<% @posts.each do |post| %>
+      　　　　marker[<%= post.id %>] = new google.maps.Marker({
+              position:  {lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+              map: map,
+              title: '<%= post.name %>'
+            });
+            infoWindow[<%= post.id %>] = new google.maps.InfoWindow({
+              position: {lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+              content: `<div class="custom-info">
+                <div class="custom-info-item name">
+                </div>
+                <div class="custom-info-item address">
+                <%= link_to post_path(post.id) do %>
+                  <%= image_tag post.post_image.variant(resize: '150x150^', gravity: "center", crop: "150x150+0+0") %><br/>
+                <%end%>  
+                <%= post.name %>
+                </div>
+            </div>`,
+              pixelOffset: new google.maps.Size(0, -50)
+            })
+
+            //マーカーをクリックしたら情報ウィンドウを開く
+            marker[<%= post.id %>].addListener('click', () => {
+              infoWindow[<%= post.id %>].open(map);
+            });
+    　　　　　<% end %>
         }
 
         function codeAddress(){
