@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
     @posts = if params[:name]
-      Post.where(name: params[:name])
+      Post.joins(:tags).where('posts.name LIKE ? or tags.name LIKE ?', "%#{params[:name]}%", "%#{params[:name]}%").distinct
     else
       Post.all
     end

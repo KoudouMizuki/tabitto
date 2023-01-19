@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   enum parking: { yes_parking:0, not_parking:1}
   enum season: { spring:0, summer:1, autumm:2, winter:3}
   enum transportation: {car:0, bike:1, bicycle:2, walking:3}
-  
+
   has_one_attached :post_image
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   belongs_to :user
 
   def save_tags(tags)
-    tag_list = tags.split(/[[:blank]] +/)
+    tag_list = tags.split(/[[:blank:]]+/)
     current_tags = self.tags.pluck(:name)
     old_tags = current_tags - tag_list
     new_tags = tag_list - current_tags
@@ -34,12 +34,12 @@ class Post < ApplicationRecord
     end
     image
   end
-  
+
   def favorite?(user)
    favorites.where(user_id: user.id).exists?
   end
-  
-  
-  
+
+
+
 
 end
