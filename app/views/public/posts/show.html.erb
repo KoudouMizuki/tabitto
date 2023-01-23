@@ -10,26 +10,6 @@
     </div>
 
     <div class="col-9 offset-md-2">
-      <%= link_to user_path(@user.id) do %>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <td>
-              <% if @user.user_image.attached? %>
-                <%= image_tag @user.user_image.variant(resize: '40x40^', gravity: "center", crop: "40x40+0+0"), class: "rounded-circle mr-3 " %>
-              <%else%>
-                <%= image_tag "no_image.jpeg", size: "150x150", class: "rounded-circle" %>
-              <%end%>
-            </td>
-            <td><strong><%= @user.account_name %></strong></td>
-          </tbody>
-        </table>
-      <%end%>
       <%= image_tag @post.post_image.variant(resize: '800x600') %><br/>
       <p class="br2">
 

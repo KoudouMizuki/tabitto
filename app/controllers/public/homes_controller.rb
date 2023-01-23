@@ -1,11 +1,11 @@
 class Public::HomesController < ApplicationController
   def top
-    @posts = if params[:name]
-      Post.joins(:tags).where('posts.name LIKE ? or tags.name LIKE ?', "%#{params[:name]}%", "%#{params[:name]}%").distinct
+    @posts_all = if params[:name]
+      Post.joins(:tags).where('posts.name LIKE ? or tags.name LIKE ?', "%#{params[:name]}%", "%#{params[:name]}%").order(id: :DESC).distinct
     else
-      Post.all
+      []
     end
-    @posts = @posts.order(id: :DESC).limit(8)
+    @posts = Post.all.order(id: :DESC).limit(8)
   end
 
   def about

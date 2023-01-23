@@ -25,7 +25,7 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li>
-                  <%= link_to "マイページ", user_path(current_user) %>
+                  <%= link_to "マイページ", users_mypage_path(current_user) %>
                 </li>
                 <li>
                   <%= link_to "投稿", new_post_path %>

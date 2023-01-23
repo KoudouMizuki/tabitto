@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'homes/about' => 'homes#about', as: 'about'
     get 'searches' => 'posts#search'
-    resources :users, only: [:show, :edit, :update]
+    get 'users/mypage' => 'users#show'
+    get 'users/mypage/edit' => 'users#edit'
+    patch 'users/mypage/edit' => 'users#update'
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :favorites, only: [:index]
     resources :posts do

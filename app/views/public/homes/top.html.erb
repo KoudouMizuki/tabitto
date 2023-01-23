@@ -27,14 +27,18 @@
           geocoder = new google.maps.Geocoder()
 
           map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: <%= (@posts.first || Post.take).latitude %>, lng: <%= (@posts.first || Post.take).longitude %> },
+            <% if @posts_all.present? %>
+              center: {lat: <%= @posts_all.first.latitude %>, lng: <%= @posts_all.first.longitude %> },
+            <%else%>
+              center: {lat: 35.68944, lng:139.69167},
+            <%end%>
             zoom: 12,
           });
 
           let marker = [];
           let infoWindow = [];
 
-　　　　　<% @posts.each do |post| %>
+　　　　　<% @posts_all.each do |post| %>
       　　　　marker[<%= post.id %>] = new google.maps.Marker({
               position:  {lat: <%= post.latitude %>, lng: <%= post.longitude %>},
               map: map,

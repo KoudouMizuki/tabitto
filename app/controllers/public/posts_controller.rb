@@ -19,7 +19,6 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments
-    @user = @post.user
   end
 
   def edit
@@ -33,7 +32,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       render :edit
-    end  
+    end
   end
 
   def destroy
@@ -41,15 +40,15 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to user_path(current_user)
   end
-  
-  
+
+
   private
 
   def post_params
     params.require(:post).permit(:post_image, :name, :introduction, :parking, :season, :transportation, :latitude, :longitude)
   end
-  
+
   def update_params
     params.require(:post).permit(:name, :introduction, :parking, :season, :transportation)
-  end  
+  end
 end
