@@ -1,5 +1,15 @@
 class Post < ApplicationRecord
 
+  validates :post_image, presence: true
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :parking, presence: true
+  validates :season, presence: true
+  validates :transportation, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+
+
   enum parking: { yes_parking:0, not_parking:1}
   enum season: { spring:0, summer:1, autumm:2, winter:3}
   enum transportation: {car:0, bike:1, bicycle:2, walking:3}

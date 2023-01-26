@@ -14,3 +14,17 @@ ja:
         bike: "バイク"
         bicycle: "自転車"
         walking: "徒歩"
+  activerecord:
+    models:
+      post: 
+    attributes:  
+      post:
+        post_image: "画像"
+        name: "タイトル"
+        introduction: "投稿についての説明"
+        parking: "駐車場"
+        season: "季節"
+        transportation: "交通手段"
+        latitude: "緯度"
+        longitude: "経度"
+    

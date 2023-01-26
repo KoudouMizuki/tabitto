@@ -62,3 +62,5 @@ gem 'enum_help'
 gem 'gmaps4rails'
 
 gem 'geocoder'
+
+gem 'rails-i18n'
