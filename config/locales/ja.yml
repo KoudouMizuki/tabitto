@@ -27,4 +27,10 @@ ja:
         transportation: "交通手段"
         latitude: "緯度"
         longitude: "経度"
-    
+    models:
+      user:
+    attributes:
+      user:
+        account_name: "アカウントネーム"
+        user_name: "ユーザーネーム"
+        email: "メールアドレス"

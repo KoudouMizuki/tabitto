@@ -1,32 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 offset-md-2">
+      <% if @user.errors.any? %>
+        <strong><%= @user.errors.count %>件のエラーが発生しました。</strong>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <%end%>
+        </ul>
+      <%end%>
+
       <%= form_with model: @user, url: users_mypage_edit_path(current_user), method: :patch do |f| %>
         <div class="form-group row">
           <div class="col-md-2 col-form-label">プロフィール画像</div>
           <%= f.file_field :user_image, accept: "image/*" %>
         </div>
-        
+
         <div class="form-group row">
           <div class="col-md-2 col-form-label">アカウントネーム</div>
           <%= f.text_field :account_name, class: "col-3" %>
         </div>
-        
+
         <div class="form-group row">
           <div class="col-md-2 col-form-label">ユーザーネーム</div>
           <%= f.text_field :user_name, class: "col-3" %>
         </div>
-        
+
         <div class="form-group row">
           <div class="col-md-2 col-form-label">メールアドレス</div>
           <%= f.text_field :email, class: "col-3" %>
         </div>
-        
+
         <div class="form-group row">
           <div class="col-md-2 col-form-label">パスワード</div>
-          <%= f.text_field :current_password, autocomplete: "off", class: "col-3" %>
+          <%= f.text_field :password, autocomplete: "off", class: "col-3" %>
         </div>
-        
+
         <div class="form-group row">
           <div class="col-md-2 col-form-label"></div>
           <%= f.submit "完了", class: "btb btn-success col-3 btn-sm" %>

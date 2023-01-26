@@ -3,6 +3,15 @@
     <div class="col-12 offset-md-2">
       <%= image_tag @post.post_image.variant(resize: '800x600'), class: "mb-3 mt-3" %><br/>
 
+      <% if @post.errors.any? %>
+        <strong><%= @post.errors.count %>件のエラーが発生しました。</strong>
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <%end%>
+        </ul>
+      <%end%>
+
       <%= form_with model: @post, url: post_path(@post.id) do |f| %>
         <div class="form-group">
           <div class="col-form-label">●タイトル</div>
