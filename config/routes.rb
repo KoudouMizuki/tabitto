@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'homes/about' => 'homes#about', as: 'about'
     get 'searches' => 'posts#search'
-    get 'users/mypage' => 'users#show'
-    get 'users/mypage/edit' => 'users#edit'
-    patch 'users/mypage/edit' => 'users#update'
+    get 'users/mypage/:id' => 'users#show', as: 'users_mypage'
+    get 'users/mypage/:id/edit' => 'users#edit', as: 'users_mypage_edit'
+    patch 'users/mypage/:id' => 'users#update', as: 'users_mypage_update'
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :favorites, only: [:index]
     resources :posts do

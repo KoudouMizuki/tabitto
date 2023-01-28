@@ -1,23 +1,21 @@
 class Public::UsersController < ApplicationController
+  before_action :set_user, only: %i[show edit update]
 
   #before_action :ensure_normal_user, only: %i[update destroy]
 
   def show
-    @user = current_user
-    @posts =@user.posts
+    @posts = @user.posts
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
-      redirect_to users_mypage_path
+      redirect_to users_mypage_path(@user)
     else
       render :edit
-    end  
+    end
   end
 
   #def ensure_normal_user
@@ -27,6 +25,10 @@ class Public::UsersController < ApplicationController
   #end
 
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:user_image,:account_name, :user_name, :email, :password)

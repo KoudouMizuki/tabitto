@@ -4,14 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #validates :account_name, presence: true
-  #validates :user_name, presence: true
-  #validates :email, presence: true
+  # validates :account_name, presence: true
+  validates :user_name, presence: true
+  validates :email, presence: true
 
   has_one_attached :user_image
-  has_many :posts, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :posts
+  has_many :favorites
+  has_many :comments
 
   def get_image
     unless image.attached?

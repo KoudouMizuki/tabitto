@@ -14,11 +14,11 @@
             <strong><h3>アカウント名：<%= @user.account_name %></h3></strong>
             <p class="br2">
             <strong><h4>ユーザー名：<%= @user.user_name %></h4></strong>
-            <%= link_to "お気に入り一覧", favorites_path(current_user.id), class: "btn btn-primary btn-sm" %>
+            <%= link_to "お気に入り一覧", favorites_path(@user), class: "btn btn-primary btn-sm" %>
           </td>
         </tr>
       </table>
-      <%= link_to "プロフィールを編集", users_mypage_edit_path(current_user), class: "btn btn-secondary col-6 btn-sm mt-5 mb-3" %>
+      <%= link_to "プロフィールを編集", users_mypage_edit_path(@user), class: "btn btn-secondary col-6 btn-sm mt-5 mb-3" %>
     </div>
   </div>
 
