@@ -22,13 +22,13 @@
       <% if @post.favorite?(current_user) %>
         <p>
           <%= link_to post_favorites_path(@post.id), method: :delete do %>
-            <span style= "color:yellow">★</span>お気に入りを解除
+            <i class="fa-regular fa-bookmark"></i>
           <% end %>
         </p>
       <% else %>
         <p>
           <%= link_to post_favorites_path(@post.id), method: :post do %>
-            <span>☆</span>お気に入りに登録
+            <i class="fas fa-light fa-star"></i>
           <% end %>
         </p>
       <% end %>
