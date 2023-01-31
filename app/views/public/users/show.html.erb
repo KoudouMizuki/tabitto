@@ -26,13 +26,19 @@
   <p class="br2">
 
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-3">
-        <%= link_to post_path(post.id) do %>
-          <%= image_tag post.post_image.variant(resize: '300x300^', gravity: "center", crop: "200x200+0+0") %>
+      <% if @posts.empty? %>
+        <div class="offset-md-3">
+          <strong><h2>追加したスポットはありません</h2></strong>
+        </div>
+      <%else%>
+        <% @posts.each do |post| %>
+          <div class="col-3">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.post_image.variant(resize: '300x300^', gravity: "center", crop: "200x200+0+0") %>
+            <%end%>
+          </div>
         <%end%>
-      </div>
-    <%end%>
+      <%end%>
   </div>
 </div>
 

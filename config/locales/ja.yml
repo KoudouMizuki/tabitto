@@ -16,8 +16,8 @@ ja:
         walking: "徒歩"
   activerecord:
     models:
-      post: 
-    attributes:  
+      post:
+    attributes:
       post:
         post_image: "画像"
         name: "タイトル"
