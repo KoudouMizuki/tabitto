@@ -18,21 +18,22 @@
             <%= tag.name %>
           </div>
         <%end%>
-
-      <% if @post.favorite?(current_user) %>
-        <p>
-          <%= link_to post_favorites_path(@post.id), method: :delete do %>
-            <i class="fa-regular fa-bookmark"></i>
-          <% end %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to post_favorites_path(@post.id), method: :post do %>
-            <i class="fas fa-light fa-star"></i>
-          <% end %>
-        </p>
-      <% end %>
-
+      <% if user_signed_in? %>
+        <% if @post.favorite?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(@post.id), method: :delete do %>
+              <i class="fa-regular fa-bookmark"></i>
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_favorites_path(@post.id), method: :post do %>
+              <i class="fas fa-light fa-star"></i>
+            <% end %>
+          </p>
+        <% end %>
+      <%end%>
+  
       <strong><h2><%= @post.name %></h2></strong>
       <table class="table table-bordered">
         <tr>

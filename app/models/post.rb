@@ -51,5 +51,8 @@ class Post < ApplicationRecord
 
 
 
+undefind method "id" for nil class
+
+
 
 end

@@ -2,15 +2,15 @@
 
 class Admin::SessionsController < Devise::SessionsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_sign_in_params, only: [:create]
   
   def after_sign_in_path_for(resource)
     admin_users_path
-  end
+  end  
   
   def after_sign_out_path_for(resource)
-    new_admin_session_path
-  end
-  # before_action :configure_sign_in_params, only: [:create]
+    new_admin_session_poath
+  end  
 
   # GET /resource/sign_in
   # def new
