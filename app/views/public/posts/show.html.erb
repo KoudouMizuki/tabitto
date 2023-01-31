@@ -18,6 +18,7 @@
             <%= tag.name %>
           </div>
         <%end%>
+        
       <% if user_signed_in? %>
         <% if @post.favorite?(current_user) %>
           <p>
@@ -60,33 +61,35 @@
   </div>
   <div class="row">
     <div class="col-12 offset-md-2">
-      <strong><h4>コメント一覧</h4></strong>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @comments.each do |comment| %>
+        <% if user_signed_in? %>
+        <strong><h4>コメント一覧</h4></strong>
+        <table>
+          <thead>
             <tr>
-              <td><%= image_tag comment.user.user_image.variant(resize: '35x35^', gravity: "center", crop: "35x35+0+0"), class: "rounded-circle mb-3 " %></td>
-              <td>
-                <strong><%= comment.user.account_name %></strong><br>
-                 <%= comment.comment %>
-                 <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
-              </td>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
-          <%end%>
-        </tbody>
-      </table>
-
-      <%= form_for [@post, @comment] do |f| %>
-        <%= f.text_area :comment, size: "40x5" %>
-        <%= f.submit "送信", class: "btn btn-primary" %>
-      <%end%>
+          </thead>
+          <tbody>
+            <% @comments.each do |comment| %>
+              <tr>
+                <td><%= image_tag comment.user.user_image.variant(resize: '35x35^', gravity: "center", crop: "35x35+0+0"), class: "rounded-circle mb-3 " %></td>
+                <td>
+                  <strong><%= comment.user.account_name %></strong><br>
+                   <%= comment.comment %>
+                   <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
+                </td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+  
+        <%= form_for [@post, @comment] do |f| %>
+          <%= f.text_area :comment, size: "40x5" %>
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        <%end%>
+      <%end%>  
     </div>
   </div>
 </div>
