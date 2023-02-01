@@ -95,7 +95,7 @@
 
   <div class="row">
     <% @posts.each do |post| %>
-        <div class="col-3 mb-3">
+        <div class="col-sm-6 col-md-3 mb-3">
           <%= link_to post_path(post.id) do %>
             <%= image_tag post.post_image.variant(resize: '300x300^', gravity: "center", crop: "200x200+0+0") %>
           <%end%>
