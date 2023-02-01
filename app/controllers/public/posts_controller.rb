@@ -1,4 +1,8 @@
 class Public::PostsController < ApplicationController
+  
+  def index
+    redirect_to new_post_path
+  end  
 
   def new
     @post = Post.new

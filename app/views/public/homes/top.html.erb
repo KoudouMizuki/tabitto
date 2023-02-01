@@ -4,7 +4,7 @@
       <div class="mb-2">
         <%= form_with url: root_path, method: :get, local: true do |f| %>
           <%= f.text_field :name, placeholder: "キーワードを入力してください。", class: "form-control" %>
-          <%= f.submit "検索" %>
+          <% f.submit "検索" %>
         <% end %>
       </div>
 
@@ -52,7 +52,7 @@
                 <div class="custom-info-item address">
                 <%= link_to post_path(post.id) do %>
                   <%= image_tag post.post_image.variant(resize: '150x150^', gravity: "center", crop: "150x150+0+0") %><br/>
-                <%end%>  
+                <%end%>
                 <%= post.name %>
                 </div>
             </div>`,
@@ -95,7 +95,7 @@
 
   <div class="row">
     <% @posts.each do |post| %>
-        <div class="col-3">
+        <div class="col-3 mb-3">
           <%= link_to post_path(post.id) do %>
             <%= image_tag post.post_image.variant(resize: '300x300^', gravity: "center", crop: "200x200+0+0") %>
           <%end%>
