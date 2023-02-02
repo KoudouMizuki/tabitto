@@ -19,9 +19,12 @@
           </td>
         </tr>
       </table>
-      <div class="offset-md-1 text-center mx-auto">
-        <%= link_to "プロフィールを編集", users_mypage_edit_path(@user), class: "btn btn-secondary col-6 btn-sm mt-5 mb-3" %>
-      </div>
+      <% if @user.email == 'guest@example.com' %>
+      <%else%>
+        <div class="offset-md-1  mx-auto">
+          <%= link_to "プロフィールを編集", users_mypage_edit_path(@user), class: "btn btn-secondary col-6 btn-sm mt-5 mb-3" %>
+        </div>
+      <%end%>  
 
     </div>
   </div>
