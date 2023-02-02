@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 offset-md-2">
+    <div class="col-8 offset-md-2">
       <%= image_tag @post.post_image.variant(resize: '800x600'), class: "mb-3 mt-3" %><br/>
 
       <% if @post.errors.any? %>
@@ -15,17 +15,17 @@
       <%= form_with model: @post, url: post_path(@post.id) do |f| %>
         <div class="form-group">
           <div class="col-form-label">●タイトル</div>
-          <%= f.text_field :name %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
 
         <div class="form-group">
           <div class="col-form-label">●説明</div>
-          <%= f.text_area :introduction, class: "col-5" %>
+          <%= f.text_area :introduction, class: "form-control" %>
         </div>
 
         <div class="form-group">
           <div class="col-form-label">●タグ(スペースで複数追加)</div>
-          <%= f.text_area :tag, class: "col-5" %>
+          <%= f.text_area :tag, class: "form-control" %>
         </div>
 
         <div class="form-group">
