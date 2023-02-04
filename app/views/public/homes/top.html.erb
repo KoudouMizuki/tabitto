@@ -4,8 +4,12 @@
       <div class="mb-2">
         <%= form_with url: root_path, method: :get, local: true do |f| %>
           <%= f.text_field :name, placeholder: "キーワードを入力してください。", class: "form-control" %>
-          <%= f.submit "検索" %>
+          <% f.submit "検索" %>
         <% end %>
+        <% if @posts_all.empty? %>
+        <%else%>
+          <%= "#{@posts_all.count} 件ありました" %>
+        <%end%>
       </div>
 
       <div id="display"></div>

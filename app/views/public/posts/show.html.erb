@@ -23,13 +23,13 @@
         <% if @post.favorite?(current_user) %>
           <p>
             <%= link_to post_favorites_path(@post.id), method: :delete do %>
-              <i class="fas fas-regular fa-bookmark fa-2x"></i>
+              <i class="fas fa-bookmark fa-2x"></i>
             <% end %>
           </p>
         <% else %>
           <p>
             <%= link_to post_favorites_path(@post.id), method: :post do %>
-              <i class="fas fa-light fa-bookmark fa-2x"></i>
+              <i class="far fa-bookmark fa-2x"></i>
             <% end %>
           </p>
         <% end %>

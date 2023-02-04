@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+   before_action :authenticate_user!, except: [:show]
 
   def index
     redirect_to new_post_path
