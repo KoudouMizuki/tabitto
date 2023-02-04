@@ -25,6 +25,11 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li>
+                  <%= link_to root_path, class: "btn btn-secondary mr-3 mt-1" do %>
+                    ホーム<i class="fas fa-search"></i>
+                  <%end%>  
+                </li>
+                <li>
                   <%= link_to users_mypage_path(current_user), class: "btn btn-secondary mr-3 mt-1" do %>
                     マイページ<i class="fas fa-user"></i>
                   <%end%>
@@ -56,6 +61,11 @@
                   <%end%>
                 </li>
               <%else%>
+                <li>
+                  <%= link_to root_path, class: "btn btn-secondary mr-3 mt-1" do %>
+                    ホーム<i class="fas fa-search"></i>
+                  <%end%>  
+                </li  
                 <li>
                   <%= link_to about_path, class: "btn btn-secondary mr-3 mt-1" do %>
                     About<i class="fas fa-link"></i>
