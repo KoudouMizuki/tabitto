@@ -60,7 +60,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 offset-md-2">
+    <div class="col-9 offset-md-2">
         <% if user_signed_in? %>
         <strong><h4>コメント一覧</h4></strong>
         <table>
@@ -74,11 +74,17 @@
           <tbody>
             <% @comments.each do |comment| %>
               <tr>
-                <td><%= image_tag comment.user.user_image.variant(resize: '35x35^', gravity: "center", crop: "35x35+0+0"), class: "rounded-circle mb-3 " %></td>
+                <td>
+                  <% if comment.user.user_image.attached? %>
+                    <%= image_tag comment.user.user_image.variant(resize: '35x35^', gravity: "center", crop: "35x35+0+0"), class: "rounded-circle mb-3 " %>
+                  <%else%>
+                    <%= image_tag "no_image.jpeg", size: "35x35", class: "rounded-circle" %>
+                  <%end%>
+                  </td>
                 <td>
                   <strong><%= comment.user.account_name %></strong><br>
                    <%= comment.comment %>
-                   <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
+                   <%= link_to "削除", post_comment_path(@post, comment), method: :delete, "data-confirm" => "削除しますか？" %>
                 </td>
               </tr>
             <%end%>
