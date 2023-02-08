@@ -1,4 +1,4 @@
-<%= image_tag comment.user.user_image.variant(resize: '35x35^', gravity: "center", crop: "35x35+0+0"), class: "rounded-circle mb-3 " %>
+
 
 
 
