@@ -1,5 +1,5 @@
 class Admin::CommentsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_user_admin!
   
   def index
     @comments = Comment.all
