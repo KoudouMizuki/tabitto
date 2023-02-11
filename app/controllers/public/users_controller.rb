@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
+  before_action :authenticate_user!
 
   #before_action :ensure_normal_user, only: %i[update destroy]
 
