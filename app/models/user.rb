@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   has_one_attached :user_image
-  has_many :posts
+  has_many :posts 
   has_many :favorites
   has_many :comments
 
