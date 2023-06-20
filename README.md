@@ -30,7 +30,7 @@ SNS等で観光地に興味を持っても、いざ行くとなるとそこは�
 https://docs.google.com/spreadsheets/d/1_NRw6L9ftk_TACoUXpZco828kui_QS7Zy4cIl1fmjuo/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
